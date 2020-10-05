@@ -101,3 +101,47 @@ def prepare_set_int(integers: List[int], max_int: int) -> List[int]:
                     return all_numbers
         all_numbers.extend(temp_set_to_add)
         temp_numbers = temp_set_to_add
+
+
+def remove_duplicates(my_list: list):
+    """Jak usunąć duplikaty z posortowanej listy?"""
+    return list(set(my_list))
+
+
+def multiples_value(value, a, b):
+    """If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9.
+    The sum of these multiples is 23."""
+    value = value - 1
+    value_a = value - value % a
+    value_b = value - value % b
+    suma = 0
+    for i in range(1, int(value_a / a) + 1):
+        suma = suma + a * i
+    for i in range(1, int(value_b / b) + 1):
+        suma = suma + b * i if (b * i) % a else suma
+    return suma
+
+
+def counting_fractions(d):
+    """Consider the fraction, n/d, where n and d are positive integers. If n<d and HCF(n,d)=1, it is called a reduced
+    proper fraction.
+    If we list the set of reduced proper fractions for d ≤ 8 in ascending order of size, we get:
+    1/8, 1/7, 1/6, 1/5, 1/4, 2/7, 1/3, 3/8, 2/5, 3/7, 1/2, 4/7, 3/5, 5/8, 2/3, 5/7, 3/4, 4/5, 5/6, 6/7, 7/8
+
+    It can be seen that there are 3 fractions between 1/3 and 1/2.
+
+    How many fractions lie between 1/3 and 1/2 in the sorted set of reduced proper fractions for d ≤ 12,000?"""
+    suma = 0
+    while d:
+        for i in range(1, d):
+            value = i/d
+            if 1/3 < value < 1/2:
+                suma = suma + 1
+        d=d-1
+    return suma
+
+
+if __name__ == "__main__":
+    assert remove_duplicates(list_a) == [1, 2, 3, 4, 5, 6, 7, 54, 89]
+    assert multiples_value(1000, 3, 5) == 233168
+    print(counting_fractions(12000))
