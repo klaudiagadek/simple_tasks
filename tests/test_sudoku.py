@@ -1,3 +1,7 @@
+import pytest
+from tasks.sudoku import SudokuBoard
+
+
 def test_sudoku_board():
     board = SudokuBoard(order=3)
     assert all(not cell for cell in board)
